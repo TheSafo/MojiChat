@@ -7,6 +7,25 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
+import Firebase
+import FirebaseAuth
+
+
+
+//        // For more complex open graph stories, use `FBSDKShareAPI`
+//        // with `FBSDKShareOpenGraphContent`
+//        /* make the API call */
+//        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+//            initWithGraphPath:@"/{user-id}/friends"
+//        parameters:params
+//        HTTPMethod:@"GET"];
+//        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+//        id result,
+//        NSError *error) {
+//        // Handle the result
+//        }];
 
 class ChatsListViewController: UIViewController {
     
@@ -22,7 +41,30 @@ class ChatsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        //Handle data
+//        guard let curUsr = FIRAuth.auth()?.currentUser else {
+//            
+//            print("❗️❗️❗️ERROR: Could not get user data for chatlistcontroller")
+//            return
+//        }
+//        
+//        guard let fbdata = FBSDKAccessToken.currentAccessToken() else {
+//            
+//            print("❗️❗️❗️ERROR: facebook login issues")
+//            return
+//        }
+        
+
+        
+        
+        //Config
         view.backgroundColor = UIColor.redColor()
+        
+        //Add subviews
+        
+        //Constraints
+
+
     }
 
     override func didReceiveMemoryWarning() {

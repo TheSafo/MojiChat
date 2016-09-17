@@ -29,11 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var rootVc: UIViewController! = nil
         if let _ = FIRAuth.auth()?.currentUser {
             // User is signed in.
+            OnboardingViewController.updateFacebookFriends()
             rootVc = ChatsListViewController()
         } else {
             // No user is signed in.
             rootVc = OnboardingViewController()
         }
+        
+//        try! FIRAuth.auth()!.signOut()
         
         let navVc = UINavigationController(rootViewController: rootVc)
         navVc.navigationBar.hidden = true
