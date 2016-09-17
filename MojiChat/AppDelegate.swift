@@ -26,20 +26,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         //UI
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
-
-        
+        var rootVc: UIViewController! = nil
         if let _ = FIRAuth.auth()?.currentUser {
             // User is signed in.
-            window?.rootViewController = UINavigationController(rootViewController: ChatsListViewController())
+            rootVc = ChatsListViewController()
         } else {
             // No user is signed in.
-            window?.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+            rootVc = OnboardingViewController()
         }
         
-        window?.makeKeyAndVisible()
+        let navVc = UINavigationController(rootViewController: rootVc)
+        navVc.navigationBar.hidden = true
         
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = navVc
+        window?.makeKeyAndVisible()
 
         return true
     }
