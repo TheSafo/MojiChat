@@ -9,10 +9,18 @@
 import UIKit
 
 class ChatsListViewController: UIViewController {
+    
+    //Views
+    private let tableView = UITableView()
+    
+    //Data
+    
+    //TODO: these aren't strings!
+    private let recentsArr: [String] = []
+    private let friendsArr: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         view.backgroundColor = UIColor.redColor()
     }

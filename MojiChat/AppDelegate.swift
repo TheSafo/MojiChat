@@ -8,7 +8,8 @@
 
 import UIKit
 import Firebase
-
+import FBSDKCoreKit
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,15 +18,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = ChatsListViewController()
-        window?.makeKeyAndVisible()
-        
+        //Setup Firebase
         FIRApp.configure()
         
+        //Setup FB
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        //UI
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+
+        
+        if let _ = FIRAuth.auth()?.currentUser {
+            // User is signed in.
+            window?.rootViewController = UINavigationController(rootViewController: ChatsListViewController())
+        } else {
+            // No user is signed in.
+            window?.rootViewController = UINavigationController(rootViewController: OnboardingViewController())
+        }
+        
+        window?.makeKeyAndVisible()
+        
+
         return true
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
+        
+        return handled
     }
 
     func applicationWillResignActive(application: UIApplication) {

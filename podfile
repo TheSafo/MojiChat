@@ -5,4 +5,7 @@ target 'MojiChat' do
 	pod 'SnapKit'
 	pod 'Firebase', '>= 2.5.1'
 	pod 'SwiftyJSON'
+	pod 'FacebookCore'
+	pod 'FacebookLogin'
+	pod 'Firebase/Auth'
 end
