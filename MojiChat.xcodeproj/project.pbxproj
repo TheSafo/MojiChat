@@ -1,0 +1,295 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		43E6A35B1D8DA06C00FBC1C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */; };
+		43E6A35D1D8DA06C00FBC1C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35C1D8DA06C00FBC1C0 /* ViewController.swift */; };
+		43E6A3601D8DA06C00FBC1C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A35E1D8DA06C00FBC1C0 /* Main.storyboard */; };
+		43E6A3621D8DA06C00FBC1C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */; };
+		43E6A3651D8DA06C00FBC1C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		43E6A3571D8DA06C00FBC1C0 /* MojiChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MojiChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		43E6A35C1D8DA06C00FBC1C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		43E6A35F1D8DA06C00FBC1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43E6A3641D8DA06C00FBC1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		43E6A3661D8DA06C00FBC1C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		43E6A3541D8DA06C00FBC1C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		43E6A34E1D8DA06C00FBC1C0 = {
+			isa = PBXGroup;
+			children = (
+				43E6A3591D8DA06C00FBC1C0 /* MojiChat */,
+				43E6A3581D8DA06C00FBC1C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		43E6A3581D8DA06C00FBC1C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				43E6A3571D8DA06C00FBC1C0 /* MojiChat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		43E6A3591D8DA06C00FBC1C0 /* MojiChat */ = {
+			isa = PBXGroup;
+			children = (
+				43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */,
+				43E6A35C1D8DA06C00FBC1C0 /* ViewController.swift */,
+				43E6A35E1D8DA06C00FBC1C0 /* Main.storyboard */,
+				43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */,
+				43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */,
+				43E6A3661D8DA06C00FBC1C0 /* Info.plist */,
+			);
+			path = MojiChat;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		43E6A3561D8DA06C00FBC1C0 /* MojiChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43E6A3691D8DA06C00FBC1C0 /* Build configuration list for PBXNativeTarget "MojiChat" */;
+			buildPhases = (
+				43E6A3531D8DA06C00FBC1C0 /* Sources */,
+				43E6A3541D8DA06C00FBC1C0 /* Frameworks */,
+				43E6A3551D8DA06C00FBC1C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MojiChat;
+			productName = MojiChat;
+			productReference = 43E6A3571D8DA06C00FBC1C0 /* MojiChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		43E6A34F1D8DA06C00FBC1C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Jake Saferstein";
+				TargetAttributes = {
+					43E6A3561D8DA06C00FBC1C0 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 43E6A3521D8DA06C00FBC1C0 /* Build configuration list for PBXProject "MojiChat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 43E6A34E1D8DA06C00FBC1C0;
+			productRefGroup = 43E6A3581D8DA06C00FBC1C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				43E6A3561D8DA06C00FBC1C0 /* MojiChat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		43E6A3551D8DA06C00FBC1C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43E6A3651D8DA06C00FBC1C0 /* LaunchScreen.storyboard in Resources */,
+				43E6A3621D8DA06C00FBC1C0 /* Assets.xcassets in Resources */,
+				43E6A3601D8DA06C00FBC1C0 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		43E6A3531D8DA06C00FBC1C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43E6A35D1D8DA06C00FBC1C0 /* ViewController.swift in Sources */,
+				43E6A35B1D8DA06C00FBC1C0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		43E6A35E1D8DA06C00FBC1C0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43E6A35F1D8DA06C00FBC1C0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43E6A3641D8DA06C00FBC1C0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		43E6A3671D8DA06C00FBC1C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43E6A3681D8DA06C00FBC1C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		43E6A36A1D8DA06C00FBC1C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MojiChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.JakeSafo.MojiChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		43E6A36B1D8DA06C00FBC1C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MojiChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.JakeSafo.MojiChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		43E6A3521D8DA06C00FBC1C0 /* Build configuration list for PBXProject "MojiChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43E6A3671D8DA06C00FBC1C0 /* Debug */,
+				43E6A3681D8DA06C00FBC1C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43E6A3691D8DA06C00FBC1C0 /* Build configuration list for PBXNativeTarget "MojiChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43E6A36A1D8DA06C00FBC1C0 /* Debug */,
+				43E6A36B1D8DA06C00FBC1C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 43E6A34F1D8DA06C00FBC1C0 /* Project object */;
+}
