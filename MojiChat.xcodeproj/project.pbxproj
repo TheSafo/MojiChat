@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		43E6A35B1D8DA06C00FBC1C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */; };
 		43E6A35D1D8DA06C00FBC1C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35C1D8DA06C00FBC1C0 /* ViewController.swift */; };
-		43E6A3601D8DA06C00FBC1C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A35E1D8DA06C00FBC1C0 /* Main.storyboard */; };
 		43E6A3621D8DA06C00FBC1C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */; };
 		43E6A3651D8DA06C00FBC1C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -18,7 +17,6 @@
 		43E6A3571D8DA06C00FBC1C0 /* MojiChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MojiChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43E6A35C1D8DA06C00FBC1C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		43E6A35F1D8DA06C00FBC1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43E6A3641D8DA06C00FBC1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43E6A3661D8DA06C00FBC1C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,7 +54,6 @@
 			children = (
 				43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */,
 				43E6A35C1D8DA06C00FBC1C0 /* ViewController.swift */,
-				43E6A35E1D8DA06C00FBC1C0 /* Main.storyboard */,
 				43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */,
 				43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */,
 				43E6A3661D8DA06C00FBC1C0 /* Info.plist */,
@@ -124,7 +121,6 @@
 			files = (
 				43E6A3651D8DA06C00FBC1C0 /* LaunchScreen.storyboard in Resources */,
 				43E6A3621D8DA06C00FBC1C0 /* Assets.xcassets in Resources */,
-				43E6A3601D8DA06C00FBC1C0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,14 +139,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		43E6A35E1D8DA06C00FBC1C0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				43E6A35F1D8DA06C00FBC1C0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
