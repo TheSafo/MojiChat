@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		115815177B35985CB5339868 /* Pods_MojiChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 179999540E3FF19300E93BF6 /* Pods_MojiChat.framework */; };
+		431AABD51D8DA3FE00936E0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 431AABD41D8DA3FE00936E0C /* GoogleService-Info.plist */; };
 		43E6A35B1D8DA06C00FBC1C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */; };
 		43E6A35D1D8DA06C00FBC1C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35C1D8DA06C00FBC1C0 /* ViewController.swift */; };
 		43E6A3621D8DA06C00FBC1C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */; };
@@ -14,12 +16,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		179999540E3FF19300E93BF6 /* Pods_MojiChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MojiChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		431AABD41D8DA3FE00936E0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43E6A3571D8DA06C00FBC1C0 /* MojiChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MojiChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43E6A35C1D8DA06C00FBC1C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43E6A3641D8DA06C00FBC1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43E6A3661D8DA06C00FBC1C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		57EC7CBBE60CC89F3D104F6F /* Pods-MojiChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MojiChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-MojiChat/Pods-MojiChat.release.xcconfig"; sourceTree = "<group>"; };
+		FFCFC8F247BFE2B308F727E5 /* Pods-MojiChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MojiChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MojiChat/Pods-MojiChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				115815177B35985CB5339868 /* Pods_MojiChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35339888BE0238C532ED97D4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				179999540E3FF19300E93BF6 /* Pods_MojiChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		43E6A34E1D8DA06C00FBC1C0 = {
 			isa = PBXGroup;
 			children = (
 				43E6A3591D8DA06C00FBC1C0 /* MojiChat */,
 				43E6A3581D8DA06C00FBC1C0 /* Products */,
+				52CB7AF48FEBA5F06E50764A /* Pods */,
+				35339888BE0238C532ED97D4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,8 +74,18 @@
 				43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */,
 				43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */,
 				43E6A3661D8DA06C00FBC1C0 /* Info.plist */,
+				431AABD41D8DA3FE00936E0C /* GoogleService-Info.plist */,
 			);
 			path = MojiChat;
+			sourceTree = "<group>";
+		};
+		52CB7AF48FEBA5F06E50764A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FFCFC8F247BFE2B308F727E5 /* Pods-MojiChat.debug.xcconfig */,
+				57EC7CBBE60CC89F3D104F6F /* Pods-MojiChat.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -68,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43E6A3691D8DA06C00FBC1C0 /* Build configuration list for PBXNativeTarget "MojiChat" */;
 			buildPhases = (
+				8F7C21F2BE01BFFA78BD8889 /* [CP] Check Pods Manifest.lock */,
 				43E6A3531D8DA06C00FBC1C0 /* Sources */,
 				43E6A3541D8DA06C00FBC1C0 /* Frameworks */,
 				43E6A3551D8DA06C00FBC1C0 /* Resources */,
+				4BD30D6AF31CE0D0BA9BF177 /* [CP] Embed Pods Frameworks */,
+				9D61A2E30E7D3C73FC006DCA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -121,10 +151,59 @@
 			files = (
 				43E6A3651D8DA06C00FBC1C0 /* LaunchScreen.storyboard in Resources */,
 				43E6A3621D8DA06C00FBC1C0 /* Assets.xcassets in Resources */,
+				431AABD51D8DA3FE00936E0C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4BD30D6AF31CE0D0BA9BF177 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MojiChat/Pods-MojiChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F7C21F2BE01BFFA78BD8889 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9D61A2E30E7D3C73FC006DCA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MojiChat/Pods-MojiChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		43E6A3531D8DA06C00FBC1C0 /* Sources */ = {
@@ -237,6 +316,7 @@
 		};
 		43E6A36A1D8DA06C00FBC1C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFCFC8F247BFE2B308F727E5 /* Pods-MojiChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MojiChat/Info.plist;
@@ -248,6 +328,7 @@
 		};
 		43E6A36B1D8DA06C00FBC1C0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57EC7CBBE60CC89F3D104F6F /* Pods-MojiChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MojiChat/Info.plist;
@@ -276,6 +357,7 @@
 				43E6A36B1D8DA06C00FBC1C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,6 @@
+framework module Pods_MojiChat {
+  umbrella header "Pods-MojiChat-umbrella.h"
+
+  export *
+  module * { export * }
+}
