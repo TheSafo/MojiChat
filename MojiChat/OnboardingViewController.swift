@@ -110,8 +110,9 @@ class OnboardingViewController: UIViewController, FBSDKLoginButtonDelegate {
                     
                     let id = result["id"] as? String ?? "err"
                     let profURL = "https://graph.facebook.com/\(id)/picture?type=large"
+                    let token = FIRInstanceID.instanceID().token()!
                     
-                    let updated: [String: AnyObject] = ["name":name, "profURL":profURL]
+                    let updated: [String: AnyObject] = ["name":name, "profURL":profURL, "deviceToken":token]
                     userRef.updateChildValues(updated)
                 }
             }

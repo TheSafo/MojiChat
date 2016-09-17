@@ -9,4 +9,5 @@ target 'MojiChat' do
 	pod 'FacebookLogin'
 	pod 'Firebase/Database'
 	pod 'Firebase/Auth'
+	pod 'Firebase/Messaging'
 end
