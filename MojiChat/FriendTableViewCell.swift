@@ -43,7 +43,6 @@ class FriendTableViewCell : UITableViewCell {
             
             if let url = usr?.profURL {
                 self.profVw.sd_setImageWithURL(url, completed: { (img, err, type, url) in
-                    self.profVw.layer.cornerRadius = self.profVw.bounds.width/2.0
                 })
             }
             else {
@@ -56,16 +55,19 @@ class FriendTableViewCell : UITableViewCell {
         didSet {
             if isExpanded {
                 
+                contentView.addSubview(libraryBtn)
+                contentView.addSubview(cameraBtn)
+                
                 profVw.snp_remakeConstraints { (make) in
                     make.top.left.equalTo(contentView).inset(10)
-                    make.bottom.equalTo(contentView.snp_centerY).offset(-5)
+                    make.bottom.equalTo(contentView.snp_centerY).offset(-10)
                     make.width.equalTo(profVw.snp_height)
                 }
-                nameLbl.snp_remakeConstraints { (make) in
-                    make.left.equalTo(profVw.snp_right).offset(10)
-                    make.centerY.equalTo(profVw)
-                    make.width.height.greaterThanOrEqualTo(20)
-                }
+//                nameLbl.snp_remakeConstraints { (make) in
+//                    make.left.equalTo(profVw.snp_right).offset(10)
+//                    make.centerY.equalTo(profVw)
+//                    make.width.height.greaterThanOrEqualTo(20)
+//                }
                 
                 cameraBtn.snp_remakeConstraints { (make) in
                     make.left.bottom.equalTo(contentView).inset(10)
@@ -83,19 +85,16 @@ class FriendTableViewCell : UITableViewCell {
                     make.top.bottom.left.equalTo(contentView).inset(10)
                     make.width.equalTo(profVw.snp_height)
                 }
-                nameLbl.snp_remakeConstraints { (make) in
-                    make.left.equalTo(profVw.snp_right).offset(10)
-                    make.centerY.equalTo(contentView)
-                    make.width.height.greaterThanOrEqualTo(20)
-                }
+//                nameLbl.snp_remakeConstraints { (make) in
+//                    make.left.equalTo(profVw.snp_right).offset(10)
+//                    make.centerY.equalTo(contentView)
+//                    make.width.height.greaterThanOrEqualTo(20)
+//                }
                 
-                cameraBtn.snp_remakeConstraints { (make) in
-                    make.left.right.width.height.equalTo(0)
-                }
-                libraryBtn.snp_remakeConstraints { (make) in
-                    make.left.right.width.height.equalTo(0)
-                }
+                cameraBtn.removeFromSuperview()
+                libraryBtn.removeFromSuperview()
             }
+            self.profVw.layer.cornerRadius = self.profVw.bounds.width/2.0
         }
     }
     
@@ -107,7 +106,7 @@ class FriendTableViewCell : UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        profVw.contentMode = .ScaleAspectFit
+        profVw.contentMode = .ScaleAspectFill
         profVw.clipsToBounds = true
         
         nameLbl.font = UIFont.boldSystemFontOfSize(18)
@@ -122,8 +121,7 @@ class FriendTableViewCell : UITableViewCell {
 
         contentView.addSubview(nameLbl)
         contentView.addSubview(profVw)
-        contentView.addSubview(libraryBtn)
-        contentView.addSubview(cameraBtn)
+
         
         profVw.snp_makeConstraints { (make) in
             make.top.bottom.left.equalTo(contentView).inset(10)
@@ -131,10 +129,16 @@ class FriendTableViewCell : UITableViewCell {
         }
         nameLbl.snp_makeConstraints { (make) in
             make.left.equalTo(profVw.snp_right).offset(10)
-            make.centerY.equalTo(contentView)
+            make.centerY.equalTo(profVw)
             make.width.height.greaterThanOrEqualTo(20)
         }
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.profVw.layer.cornerRadius = self.profVw.bounds.width/2.0
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -147,6 +151,7 @@ class FriendTableViewCell : UITableViewCell {
         usr = nil
         isExpanded = false
         delegate = nil
+        
     }
     
     func cameraBtnPressed() {

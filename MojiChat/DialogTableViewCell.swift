@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SDWebImage
+import FirebaseDatabase
 
 enum MessageType {
     case Photo
@@ -18,6 +19,7 @@ enum MessageType {
 struct Message {
     var type: MessageType
     var text: String
+    var sender: String
     var url: NSURL?
     
     init(info: [String:AnyObject]) {
@@ -29,6 +31,8 @@ struct Message {
             type = .Photo
             url = NSURL(string: info["url"] as! String)
         }
+        
+        sender = (info["sender"] as? String) ?? "dno5M31uO1h6Rf1ht8GAO3wWAaR2"
         
         text = (info["text"] as? String) ?? ""
     }
@@ -54,25 +58,55 @@ class DialogTableViewCell : UITableViewCell {
             else {
                imgVw.image = nil
             }
+            
+            if let senderId = message?.sender {
+                
+                let ref = FIRDatabase.database().reference().child("userData/\(senderId)/profURL")
+                ref.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                    if let urlStr = snapshot.value as? String {
+                        if let url = NSURL(string: urlStr) {
+                            self.senderVw.sd_setImageWithURL(url)
+                        }
+                    }
+                })
+            }
         }
     }
     
+    let senderVw = UIImageView()
     let imgVw = UIImageView()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        imgVw.contentMode = .ScaleAspectFit
+        senderVw.contentMode = .ScaleAspectFill
+        senderVw.clipsToBounds = true
         
+        imgVw.contentMode = .ScaleAspectFill
+        imgVw.clipsToBounds = true
+        
+        contentView.addSubview(senderVw)
         contentView.addSubview(imgVw)
         
+        senderVw.snp_makeConstraints { (make) in
+            make.top.left.equalTo(contentView).inset(10)
+            make.width.height.equalTo(40)
+        }
         imgVw.snp_remakeConstraints { (make) in
-            make.edges.equalTo(contentView)
+            make.right.bottom.equalTo(contentView).inset(10)
+            make.left.equalTo(senderVw.snp_right).offset(10)
+            make.top.equalTo(contentView).inset(25)
         }
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.senderVw.layer.cornerRadius = self.senderVw.bounds.width/2.0
     }
     
     override func prepareForReuse() {

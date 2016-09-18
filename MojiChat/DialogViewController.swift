@@ -123,6 +123,12 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.navigationController?.navigationBar.hidden = false
+    }
+    
     //MARK: - Buttons
     func libraryBtnPressed() {
         let ctrlr = UIImagePickerController()
@@ -171,7 +177,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             imgRef.downloadURLWithCompletion({ (url, err) in
                 
                 let dialogRef = FIRDatabase.database().reference().child("dialogs/\(self.dialogID)")
-                let msgInfo = ["type":"Photo", "url":url!.absoluteString]
+                let msgInfo = ["type":"Photo", "url":url!.absoluteString, "sender":FIRAuth.auth()!.currentUser!.uid]
                 dialogRef.updateChildValues(["\(curInd)":msgInfo])
                 self.currentIndex! += 1
             })

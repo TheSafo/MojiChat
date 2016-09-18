@@ -27,6 +27,9 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.extendedLayoutIncludesOpaqueBars = false
+        
         //Handle data
         guard let curUsr = FIRAuth.auth()?.currentUser else {
             
@@ -70,21 +73,31 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
         })
         
         //Config
-        view.backgroundColor = UIColor.redColor()
+        view.backgroundColor = UIColor.whiteColor()
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(FriendTableViewCell.self, forCellReuseIdentifier: "friend")
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "test")
         tableView.rowHeight = 70
+//        tableView.contentOffset = CGPointMake(0, 20) //status bar
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        tableView.backgroundColor = UIColor.whiteColor()
 
         //Add subviews
         view.addSubview(tableView)
         
         //Constraints
         tableView.snp_makeConstraints { (make) in
-            make.edges.equalTo(view)
+            make.left.bottom.right.equalTo(view)
+            make.top.equalTo(view).inset(0)
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.navigationController?.navigationBar.hidden = true
     }
     
     //MARK: - Table View Data Source methods
@@ -104,6 +117,27 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
                 return 70
             }
         }
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 100
+        }
+        return CGFloat.min
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if section == 0 {
+            let vw = UIView()
+            vw.backgroundColor = UIColor.redColor()
+            return vw
+        }
+        return nil
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return nil
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
