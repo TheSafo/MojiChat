@@ -11,6 +11,7 @@ import Firebase
 import FBSDKCoreKit
 import FirebaseAuth
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -29,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Setup FB
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
         
         //UI
         var rootVc: UIViewController! = nil

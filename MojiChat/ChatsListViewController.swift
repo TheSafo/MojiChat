@@ -11,6 +11,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
 import FirebaseAuth
+import FirebaseMessaging
 
 class ChatsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -127,7 +128,6 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
             let usrPressed = self.friendsArr[indexPath.row]
             
             print("User pressed: \(usrPressed.name)")
-            
             
         }
     }
