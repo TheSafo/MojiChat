@@ -22,7 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Setup Firebase
         FIRApp.configure()
+        FIRDatabase.database().persistenceEnabled = true
         
+        //Register for push
         let settings: UIUserNotificationSettings =
             UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
         application.registerUserNotificationSettings(settings)
