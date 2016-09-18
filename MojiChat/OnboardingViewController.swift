@@ -17,22 +17,33 @@ import FirebaseDatabase
 class OnboardingViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     private let fbLoginBtn = FBSDKLoginButton()
+    private let bgVw = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Configure
-        view.backgroundColor = UIColor.yellowColor()
+//        view.backgroundColor = UIColor.yellowColor()
+        bgVw.image = UIImage(named: "mc-login-bg")
+        bgVw.contentMode = .ScaleAspectFit
         
         fbLoginBtn.delegate = self
         fbLoginBtn.readPermissions = ["public_profile", "email", "user_friends"]
         
         //Add subviews
+        view.addSubview(bgVw)
         view.addSubview(fbLoginBtn)
         
         //Constraints
+        bgVw.snp_makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
+        
         fbLoginBtn.snp_makeConstraints { (make) in
-            make.center.equalTo(view)
+            make.centerX.equalTo(view)
+            make.centerY.equalTo(view).multipliedBy(1.75)
+            make.height.equalTo(80)
+            make.width.equalTo(240)
         }
     }
     

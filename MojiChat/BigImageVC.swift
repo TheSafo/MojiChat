@@ -143,11 +143,11 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
                 // the sample buffer also contains the metadata, in case we want to modify it
 //                let metadata:NSDictionary = CMCopyDictionaryOfAttachments(nil, imageDataSampleBuffer, CMAttachmentMode(kCMAttachmentMode_ShouldPropagate)).takeUnretainedValue()
                 
-//                if var image = UIImage(data: imageData) {
+                if let image = UIImage(data: imageData) {
                     // save the image or do something interesting with it
                     
-                    self.handleReactionImage(imageData)
-//                }
+                    self.handleReactionImage(imageData, name: "\(image.hash)")
+                }
             }
             else {
                 NSLog("error while capturing still image: \(error)")
@@ -159,10 +159,10 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
 #endif
     }
     
-    func handleReactionImage(imgData: NSData) {
+    func handleReactionImage(imgData: NSData, name: String) {
         
         let storage = FIRStorage.storage()
-        let fileName = "\(imgData.hash).jpg"
+        let fileName = "\(name).jpg"
         let imgRef = storage.referenceForURL("gs://mojichat-afe91.appspot.com").child("images").child(fileName)
         
         let uploadTask = imgRef.putData(imgData)
