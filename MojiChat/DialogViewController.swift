@@ -65,7 +65,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 dispatch_group_notify(loadingMsgsGroup, dispatch_get_main_queue()) {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
-                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messagesArray.count - 1), atScrollPosition: .Bottom, animated: true)
+                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messagesArray.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
                     })
                 }
                 
@@ -123,7 +123,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 dispatch_group_notify(loadingMsgsGroup, dispatch_get_main_queue()) {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
-                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messagesArray.count - 1), atScrollPosition: .Bottom, animated: true)
+                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messagesArray.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
                     })
                 }
 

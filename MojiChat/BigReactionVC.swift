@@ -41,6 +41,8 @@ class BigReactionVC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imageVw.contentMode = .ScaleAspectFit
+        
         view.addSubview(imageVw)
         
         imageVw.snp_makeConstraints { (make) in
@@ -52,13 +54,20 @@ class BigReactionVC : UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-//        let imgName = type.rawValue
-//        
-//        var images = (0..<60).map { (i) -> UIImage in
-//            let name = (i < 10) ? "\(imgName)_0000\(i)" : "\(imgName)_000\(i)"
-//            return UIImage(named: name)!
-//        }
-//        
+        let imgName = (type.rawValue == "unknown") ? "happiness" : type.rawValue
+        
+        let images = (0..<60).map { (i) -> UIImage in
+            let name = (i < 10) ? "\(imgName)_0000\(i)" : "\(imgName)_000\(i)"
+            return UIImage(named: name)!
+        }
+        
+        self.imageVw.animationImages = images
+        imageVw.contentMode = .ScaleAspectFit
+//        self.imageVw.animationDuration = 2.0
+        self.imageVw.animationRepeatCount = 1
+        
+        self.imageVw.startAnimating()
+        
         tmr = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(endImageViewing), userInfo: nil, repeats: false)
     }
     
