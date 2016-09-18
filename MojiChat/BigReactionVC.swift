@@ -52,7 +52,14 @@ class BigReactionVC : UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        tmr = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(endImageViewing), userInfo: nil, repeats: false)
+//        let imgName = type.rawValue
+//        
+//        var images = (0..<60).map { (i) -> UIImage in
+//            let name = (i < 10) ? "\(imgName)_0000\(i)" : "\(imgName)_000\(i)"
+//            return UIImage(named: name)!
+//        }
+//        
+        tmr = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(endImageViewing), userInfo: nil, repeats: false)
     }
     
     func endImageViewing() {

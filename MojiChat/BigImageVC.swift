@@ -146,7 +146,9 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
                 if let image = UIImage(data: imageData) {
                     // save the image or do something interesting with it
                     
-                    self.handleReactionImage(imageData, name: "\(image.hash)")
+                    let data = UIImagePNGRepresentation(image)
+                    
+                    self.handleReactionImage(data!, name: "\(image.hash)")
                 }
             }
             else {
@@ -162,14 +164,16 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
     func handleReactionImage(imgData: NSData, name: String) {
         
         let storage = FIRStorage.storage()
-        let fileName = "\(name).jpg"
+        let fileName = "\(name).png"
         let imgRef = storage.referenceForURL("gs://mojichat-afe91.appspot.com").child("images").child(fileName)
         
-        let uploadTask = imgRef.putData(imgData)
+        let metaData = FIRStorageMetadata()
+        metaData.contentType = "image/png"
+        
+        let uploadTask = imgRef.putData(imgData, metadata: metaData)
         
         // Add a progress observer to an upload task
         let _ = uploadTask.observeStatus(.Success) { snapshot in
-            
             
             imgRef.downloadURLWithCompletion({ (url, err) in
                 
@@ -181,11 +185,11 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
                     
                     self.delegate?.didReactWithEmotion(emoji)
                 })
-//
-//                let dialogRef = FIRDatabase.database().reference().child("dialogs/\(self.dialogID)")
-//                let msgInfo = ["type":"Photo", "url":url!.absoluteString, "sender":FIRAuth.auth()!.currentUser!.uid, "timestamp":NSDate().timeIntervalSinceReferenceDate, "wasRead":false]
-//                dialogRef.updateChildValues(["\(curInd)":msgInfo])
-//                self.currentIndex! += 1
+                //
+                //                let dialogRef = FIRDatabase.database().reference().child("dialogs/\(self.dialogID)")
+                //                let msgInfo = ["type":"Photo", "url":url!.absoluteString, "sender":FIRAuth.auth()!.currentUser!.uid, "timestamp":NSDate().timeIntervalSinceReferenceDate, "wasRead":false]
+                //                dialogRef.updateChildValues(["\(curInd)":msgInfo])
+                //                self.currentIndex! += 1
             })
         }
 
