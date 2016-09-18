@@ -32,27 +32,26 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
             return
         }
         
-        let serviceGroup = dispatch_group_create()
-        
-        dispatch_group_enter(serviceGroup)
-        
-        dispatch_group_notify(serviceGroup, dispatch_get_main_queue()) { 
-            dispatch_async(dispatch_get_main_queue(), { 
-                self.tableView.reloadData()
-            })
-        }
-        
         let friendsListRef = FIRDatabase.database().reference().child("userData/\(curUsr.uid)/friends")
-        friendsListRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        friendsListRef.observeEventType(.Value, withBlock: { (snapshot) in
             
             guard let friendIDs = snapshot.value as? [String] else {
-                
                 return
+            }
+            
+            let loadingFriendsGroup = dispatch_group_create()
+            dispatch_group_enter(loadingFriendsGroup)
+            self.friendsArr = []
+            
+            dispatch_group_notify(loadingFriendsGroup, dispatch_get_main_queue()) {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                })
             }
             
             for id in friendIDs {
                 
-                dispatch_group_enter(serviceGroup)
+                dispatch_group_enter(loadingFriendsGroup)
                 
                 let idRef = FIRDatabase.database().reference().child("userData/\(id)")
                 idRef.observeSingleEventOfType(.Value, withBlock: { (idSnap) in
@@ -62,15 +61,11 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
                         let usr = User(userInfo: userInfo)
                         self.friendsArr.append(usr)
                     }
-                    dispatch_group_leave(serviceGroup)
+                    dispatch_group_leave(loadingFriendsGroup)
                 })
             }
-            
-            dispatch_group_leave(serviceGroup)
+            dispatch_group_leave(loadingFriendsGroup)
         })
-        
-        
-        
         
         //Config
         view.backgroundColor = UIColor.redColor()
