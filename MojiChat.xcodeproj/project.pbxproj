@@ -11,6 +11,7 @@
 		431AABD51D8DA3FE00936E0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 431AABD41D8DA3FE00936E0C /* GoogleService-Info.plist */; };
 		431AABD81D8DB0CE00936E0C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431AABD71D8DB0CE00936E0C /* OnboardingViewController.swift */; };
 		438893E01D8E29CA00BFEA09 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438893DF1D8E29CA00BFEA09 /* DialogViewController.swift */; };
+		438893E21D8E520E00BFEA09 /* DialogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438893E11D8E520E00BFEA09 /* DialogTableViewCell.swift */; };
 		43E6A35B1D8DA06C00FBC1C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */; };
 		43E6A35D1D8DA06C00FBC1C0 /* ChatsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35C1D8DA06C00FBC1C0 /* ChatsListViewController.swift */; };
 		43E6A3621D8DA06C00FBC1C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 		431AABD41D8DA3FE00936E0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		431AABD71D8DB0CE00936E0C /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		438893DF1D8E29CA00BFEA09 /* DialogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
+		438893E11D8E520E00BFEA09 /* DialogTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialogTableViewCell.swift; sourceTree = "<group>"; };
 		43E6A3571D8DA06C00FBC1C0 /* MojiChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MojiChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43E6A35C1D8DA06C00FBC1C0 /* ChatsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				43E6A35C1D8DA06C00FBC1C0 /* ChatsListViewController.swift */,
 				43EF53941D8DFCF800D475D2 /* FriendTableViewCell.swift */,
 				438893DF1D8E29CA00BFEA09 /* DialogViewController.swift */,
+				438893E11D8E520E00BFEA09 /* DialogTableViewCell.swift */,
 				43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */,
 				43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */,
 				43E6A3661D8DA06C00FBC1C0 /* Info.plist */,
@@ -231,6 +234,7 @@
 				43E6A35D1D8DA06C00FBC1C0 /* ChatsListViewController.swift in Sources */,
 				431AABD81D8DB0CE00936E0C /* OnboardingViewController.swift in Sources */,
 				438893E01D8E29CA00BFEA09 /* DialogViewController.swift in Sources */,
+				438893E21D8E520E00BFEA09 /* DialogTableViewCell.swift in Sources */,
 				43E6A35B1D8DA06C00FBC1C0 /* AppDelegate.swift in Sources */,
 				43EF53951D8DFCF800D475D2 /* FriendTableViewCell.swift in Sources */,
 			);

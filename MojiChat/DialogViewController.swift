@@ -10,50 +10,20 @@ import Foundation
 import UIKit
 import Firebase
 
-enum MessageType {
-    case Photo
-    case Emoji
-}
 
-struct Message {
-    var type: MessageType
-    var text: String
-    var url: NSURL?
-    
-    init(info: [String:AnyObject]) {
-        
-        if info["type"] as? String == "Emoji" {
-            type = .Emoji
-        }
-        else {
-            type = .Photo
-            url = NSURL(string: info["url"] as! String)
-        }
-        
-        text = (info["text"] as? String) ?? ""
-    }
-    
-    static func calculateMessageID(userId1: String, userId2: String) -> String {
-        
-        if userId1 < userId2 {
-            return userId1 + userId2
-        }
-        else {
-            return userId2 + userId1
-        }
-    }
-}
 
 class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     //Table
+    private let dialogID: String
     private let tableView = UITableView(frame: CGRectZero, style: .Grouped)
     private var messagesArray: [Message] = []
     
     //Other
     private var vcToShow: UIViewController? = nil
+    private var currentIndex: Int? = nil
     
-    private let dialogID: String
+    private let libraryBtn = UIButton(type: .System)
     
     init(dialogID: String, showCamera: Bool, showLibrary: Bool) {
         self.dialogID = dialogID
@@ -68,6 +38,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 ctrlr.cameraCaptureMode = .Photo
                 ctrlr.delegate = self
                 
+                currentIndex = 0
+                
                 vcToShow = ctrlr
             }
         }
@@ -76,9 +48,10 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             ctrlr.sourceType = .SavedPhotosAlbum
             ctrlr.delegate = self
             
+            currentIndex = 0
+
             vcToShow = ctrlr
         }
-        
         
         let dialogRef = FIRDatabase.database().reference().child("dialogs/\(dialogID)")
         dialogRef.observeEventType(.Value, withBlock: { (snapshot) in
@@ -102,6 +75,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                         self.messagesArray.append(msg)
                     }
                 }
+                self.currentIndex = msgArray.count
                 
                 dispatch_group_leave(loadingMsgsGroup)
             }
@@ -116,14 +90,26 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        libraryBtn.backgroundColor = UIColor.redColor()
+        libraryBtn.setTitle("Lib", forState: .Normal)
+        libraryBtn.addTarget(self, action: #selector(libraryBtnPressed), forControlEvents: .TouchUpInside)
+        
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "test")
+        tableView.registerClass(DialogTableViewCell.self, forCellReuseIdentifier: "test")
+        tableView.rowHeight = 150
         
         view.addSubview(tableView)
+        view.addSubview(libraryBtn)
         
         tableView.snp_makeConstraints { (make) in
             make.edges.equalTo(view)
+        }
+        
+        libraryBtn.snp_makeConstraints { (make) in
+            make.bottom.right.equalTo(view).inset(20)
+            make.left.equalTo(view.snp_centerY).offset(10)
+            make.height.equalTo(40)
         }
     }
     
@@ -131,10 +117,21 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewWillAppear(animated)
         
         if let vc = vcToShow {
-            self.presentViewController(vc, animated: true, completion: { 
+            self.navigationController?.presentViewController(vc, animated: true, completion: {
                 self.vcToShow = nil
             })
         }
+    }
+    
+    //MARK: - Buttons
+    func libraryBtnPressed() {
+        let ctrlr = UIImagePickerController()
+        ctrlr.sourceType = .SavedPhotosAlbum
+        ctrlr.delegate = self
+        
+        self.navigationController?.presentViewController(ctrlr, animated: true, completion: {
+            
+        })
     }
     
     
@@ -144,13 +141,19 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         return messagesArray.count
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("test", forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.greenColor()
+        let cell = tableView.dequeueReusableCellWithIdentifier("test", forIndexPath: indexPath) as! DialogTableViewCell
+        cell.message = self.messagesArray[indexPath.row]
         return cell
     }
     
     //MARK: - IMage reception
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+        guard let curInd = currentIndex else {
+            
+            print("got image but hard to deal with this case")
+            return
+        }
         
         print("got image")
         
@@ -163,13 +166,14 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         let uploadTask = imgRef.putData(asData)
         
         // Add a progress observer to an upload task
-        let observer = uploadTask.observeStatus(.Success) { snapshot in
+        let _ = uploadTask.observeStatus(.Success) { snapshot in
             
             imgRef.downloadURLWithCompletion({ (url, err) in
                 
                 let dialogRef = FIRDatabase.database().reference().child("dialogs/\(self.dialogID)")
                 let msgInfo = ["type":"Photo", "url":url!.absoluteString]
-                dialogRef.setValue(["0":msgInfo])
+                dialogRef.updateChildValues(["\(curInd)":msgInfo])
+                self.currentIndex! += 1
             })
         }
 

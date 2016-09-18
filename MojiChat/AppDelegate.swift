@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        try! FIRAuth.auth()!.signOut()
         
         let navVc = UINavigationController(rootViewController: rootVc)
-        navVc.navigationBar.hidden = true
+//        navVc.navigationBar.hidden = true
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = navVc

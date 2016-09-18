@@ -146,7 +146,17 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
             print("User pressed: \(usrPressed.name)")
             
             if expandedFriendRow == indexPath.row {
+                
+                let curUsrId = FIRAuth.auth()!.currentUser!.uid
+                let usrPressedID = self.friendsArr[indexPath.row].uid
+                
+                let messageId = Message.calculateMessageID(curUsrId, userId2: usrPressedID)
+                let msgVc = DialogViewController(dialogID: messageId, showCamera: false, showLibrary: false)
+                
+                self.navigationController?.pushViewController(msgVc, animated: true)
+                
                 expandedFriendRow = nil
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
             }
             else {
                 expandedFriendRow = indexPath.row
@@ -164,7 +174,7 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
         let messageId = Message.calculateMessageID(curUsrId, userId2: usrPressedID)
         let msgVc = DialogViewController(dialogID: messageId, showCamera: false, showLibrary: true)
 
-        self.navigationController?.presentViewController(msgVc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(msgVc, animated: true)
     }
     func cameraPressedFromUser(user: User) {
         
@@ -174,7 +184,7 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
         let messageId = Message.calculateMessageID(curUsrId, userId2: usrPressedID)
         let msgVc = DialogViewController(dialogID: messageId, showCamera: true, showLibrary: false)
         
-        self.navigationController?.presentViewController(msgVc, animated: true, completion: nil)
+        self.navigationController?.pushViewController(msgVc, animated: true)
     }
 }
 
