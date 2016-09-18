@@ -15,6 +15,7 @@
 		438893E61D8E76E100BFEA09 /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438893E51D8E76E100BFEA09 /* RecentTableViewCell.swift */; };
 		438893EC1D8E918400BFEA09 /* BigReactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438893EB1D8E918400BFEA09 /* BigReactionVC.swift */; };
 		438893EE1D8E928000BFEA09 /* BigImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438893ED1D8E928000BFEA09 /* BigImageVC.swift */; };
+		438893F01D8EA2B200BFEA09 /* EmotionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438893EF1D8EA2B200BFEA09 /* EmotionHandler.swift */; };
 		43E6A35B1D8DA06C00FBC1C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */; };
 		43E6A35D1D8DA06C00FBC1C0 /* ChatsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35C1D8DA06C00FBC1C0 /* ChatsListViewController.swift */; };
 		43E6A3621D8DA06C00FBC1C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		438893E51D8E76E100BFEA09 /* RecentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
 		438893EB1D8E918400BFEA09 /* BigReactionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigReactionVC.swift; sourceTree = "<group>"; };
 		438893ED1D8E928000BFEA09 /* BigImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BigImageVC.swift; sourceTree = "<group>"; };
+		438893EF1D8EA2B200BFEA09 /* EmotionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionHandler.swift; sourceTree = "<group>"; };
 		43E6A3571D8DA06C00FBC1C0 /* MojiChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MojiChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43E6A35C1D8DA06C00FBC1C0 /* ChatsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				438893E11D8E520E00BFEA09 /* DialogTableViewCell.swift */,
 				438893EB1D8E918400BFEA09 /* BigReactionVC.swift */,
 				438893ED1D8E928000BFEA09 /* BigImageVC.swift */,
+				438893EF1D8EA2B200BFEA09 /* EmotionHandler.swift */,
 				43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */,
 				43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */,
 				43E6A3661D8DA06C00FBC1C0 /* Info.plist */,
@@ -244,6 +247,7 @@
 				431AABD81D8DB0CE00936E0C /* OnboardingViewController.swift in Sources */,
 				438893E01D8E29CA00BFEA09 /* DialogViewController.swift in Sources */,
 				438893E21D8E520E00BFEA09 /* DialogTableViewCell.swift in Sources */,
+				438893F01D8EA2B200BFEA09 /* EmotionHandler.swift in Sources */,
 				438893E61D8E76E100BFEA09 /* RecentTableViewCell.swift in Sources */,
 				43E6A35B1D8DA06C00FBC1C0 /* AppDelegate.swift in Sources */,
 				438893EC1D8E918400BFEA09 /* BigReactionVC.swift in Sources */,

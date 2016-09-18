@@ -199,6 +199,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     //MARK: - Delegate
     func didReactWithEmotion(emote: EmojiType) {
         
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        
         guard let curInd = currentIndex else {
             print("got reaction but hard to deal with this case")
             return

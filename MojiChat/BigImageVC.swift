@@ -143,7 +143,7 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
                 // the sample buffer also contains the metadata, in case we want to modify it
 //                let metadata:NSDictionary = CMCopyDictionaryOfAttachments(nil, imageDataSampleBuffer, CMAttachmentMode(kCMAttachmentMode_ShouldPropagate)).takeUnretainedValue()
                 
-//                if let image = UIImage(data: imageData) {
+//                if var image = UIImage(data: imageData) {
                     // save the image or do something interesting with it
                     
                     self.handleReactionImage(imageData)
@@ -173,7 +173,14 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
             
             imgRef.downloadURLWithCompletion({ (url, err) in
                 
-                
+                EmotionHandler.sharedInstance.getEmotion([url!.absoluteString], completion: { (emotion) in
+                    
+                    print("emotion: \(emotion) for url: \(url!.absoluteString)")
+                    
+                    let emoji = EmojiType(rawValue: emotion) ?? .Neutral
+                    
+                    self.delegate?.didReactWithEmotion(emoji)
+                })
 //
 //                let dialogRef = FIRDatabase.database().reference().child("dialogs/\(self.dialogID)")
 //                let msgInfo = ["type":"Photo", "url":url!.absoluteString, "sender":FIRAuth.auth()!.currentUser!.uid, "timestamp":NSDate().timeIntervalSinceReferenceDate, "wasRead":false]

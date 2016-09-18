@@ -12,7 +12,12 @@ import UIKit
 enum EmojiType: String {
     case Anger = "anger"
     case Neutral = "neutral"
-//    case
+    case Unknown = "unknown"
+    case Disgust = "disgust"
+    case Fear = "fear"
+    case Sadness = "sadness"
+    case Surprise = "surprise"
+    case Happiness = "happiness"
 }
 
 class BigReactionVC : UIViewController {
