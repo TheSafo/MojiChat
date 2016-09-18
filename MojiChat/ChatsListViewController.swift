@@ -175,12 +175,14 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if section == 0 {
-            let vw = UIView()
-            vw.backgroundColor = UIColor.redColor()
+            let vw = UIImageView()
+            vw.image = UIImage(named: "mc-logo")
+            vw.contentMode = .ScaleAspectFit
             return vw
         }
-        let vw = UIView()
-        vw.backgroundColor = UIColor.purpleColor()
+        let vw = UILabel()
+        vw.backgroundColor = UIColor.lightGrayColor()
+        vw.text = "Friends"
         return vw
     }
     

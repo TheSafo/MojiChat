@@ -34,20 +34,26 @@ class RecentTableViewCell : UITableViewCell {
             if let state = dialog?.getRecentDialogState() {
                 switch state {
                 case .UnreadPicture:
-                    self.imgPreview.image = UIImage(named: "loading") //TODO: change
-                    self.textPreview.text = "Unseen image"
+                    self.imgPreview.image = UIImage(named: "mc-unread-picture")
+                    self.textPreview.text = "New Image"
                 case .UnreadEmoji:
-                    self.imgPreview.image = UIImage(named: "loading") //TODO: change
-                    self.textPreview.text = "Unseen reaction"
+                    self.imgPreview.image = UIImage(named: "mc-unread-emoji")
+                    self.textPreview.text = "New Reaction"
                 case .ReadEmoji:
-                    self.imgPreview.image = UIImage(named: "loading") //TODO: change
-                    self.textPreview.text = "Saw their emoji"
+                    
+                    let emoji = dialog?.messages.last?.text ?? "unknown"
+                    
+                    self.imgPreview.image = UIImage(named: "mc-read-emoji-\(emoji)")
+                    self.textPreview.text = "Last Reacted"
                 case .YouReacted:
-                    self.imgPreview.image = UIImage(named: "loading") //TODO: change
-                    self.textPreview.text = "Reacted to their image"
+                    
+                    let emoji = dialog?.messages.last?.text ?? "unknown"
+                    
+                    self.imgPreview.image = UIImage(named: "mc-you-reacted-\(emoji)")
+                    self.textPreview.text = "You last reacted"
                 case .OtherUnreadPicture:
-                    self.imgPreview.image = UIImage(named: "loading") //TODO: change
-                    self.textPreview.text = "They haven't opened img"
+                    self.imgPreview.image = UIImage(named: "mc-other-unread-picture")
+                    self.textPreview.text = "Image Sent"
                 }
             }
             else {
