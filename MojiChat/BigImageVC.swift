@@ -135,7 +135,7 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
         let connection = self.stillCameraOutput.connectionWithMediaType(AVMediaTypeVideo)
         
         // update the video orientation to the device one
-        connection.videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.currentDevice().orientation.rawValue) ?? AVCaptureVideoOrientation.Portrait
+        connection.videoOrientation = AVCaptureVideoOrientation.Portrait
         
         self.stillCameraOutput.captureStillImageAsynchronouslyFromConnection(connection) {
             (imageDataSampleBuffer, error) -> Void in
@@ -172,12 +172,12 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
         
         let storage = FIRStorage.storage()
         let fileName = "\(name).png"
-        let imgRef = storage.referenceForURL("gs://mojichat-afe91.appspot.com").child("images").child(fileName)
+        let imgRef = storage.referenceForURL("gs://mojichat-afe91.appspot.com").child("images/\(fileName)")
         
-//        let metaData = FIRStorageMetadata()
-//        metaData.contentType = "image/png"
+        let metaData = FIRStorageMetadata()
+        metaData.contentType = "image/png"
         
-        let uploadTask = imgRef.putData(imgData)//, metadata: metaData)
+        let uploadTask = imgRef.putData(imgData, metadata: metaData)
         
         // Add a progress observer to an upload task
         let _ = uploadTask.observeStatus(.Success) { snapshot in

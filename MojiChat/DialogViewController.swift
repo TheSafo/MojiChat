@@ -24,6 +24,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     private var currentIndex: Int? = nil
     
     private let libraryBtn = UIButton(type: .System)
+    private let cameraBtn   = UIButton(type: .System)
+
     
     init(dialog: Dialog, shouldShowBigReaction: Bool, shouldShowImageAndTakeReaction: Bool) {
         self.dialogID = dialog.user1 + dialog.user2
@@ -153,6 +155,11 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         libraryBtn.layer.cornerRadius = 9
         libraryBtn.addTarget(self, action: #selector(libraryBtnPressed), forControlEvents: .TouchUpInside)
         
+        cameraBtn.backgroundColor = UIColor(white: 0.8, alpha: 1.0)
+        cameraBtn.setTitle("Camera", forState: .Normal)
+        cameraBtn.layer.cornerRadius = 9
+        cameraBtn.addTarget(self, action: #selector(self.cameraBtnPressed), forControlEvents: .TouchUpInside)
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(DialogTableViewCell.self, forCellReuseIdentifier: "test")
@@ -192,6 +199,18 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     func libraryBtnPressed() {
         let ctrlr = UIImagePickerController()
         ctrlr.sourceType = .SavedPhotosAlbum
+        ctrlr.delegate = self
+        
+        self.navigationController?.presentViewController(ctrlr, animated: true, completion: {
+            
+        })
+    }
+    
+    func cameraBtnPressed() {
+        let ctrlr = UIImagePickerController()
+        ctrlr.sourceType = .Camera
+        ctrlr.cameraCaptureMode = .Photo
+        ctrlr.showsCameraControls = true
         ctrlr.delegate = self
         
         self.navigationController?.presentViewController(ctrlr, animated: true, completion: {
