@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SDWebImage
 import FirebaseDatabase
+import FirebaseAuth
 
 //protocol RecentTableViewCellDelegate {
 //    func cellPressedWithDialog(dialog: Dialog)
@@ -30,8 +31,29 @@ class RecentTableViewCell : UITableViewCell {
                 })
             }
             
-            textPreview.text = dialog == nil ? nil : "Data type" //TODO: handle this + img
-            imgPreview.image = UIImage(named: "loading")
+            if let state = dialog?.getRecentDialogState() {
+                switch state {
+                case .UnreadPicture:
+                    self.imgPreview.image = UIImage(named: "loading") //TODO: change
+                    self.textPreview.text = "Unseen image"
+                case .UnreadEmoji:
+                    self.imgPreview.image = UIImage(named: "loading") //TODO: change
+                    self.textPreview.text = "Unseen reaction"
+                case .ReadEmoji:
+                    self.imgPreview.image = UIImage(named: "loading") //TODO: change
+                    self.textPreview.text = "Saw their emoji"
+                case .YouReacted:
+                    self.imgPreview.image = UIImage(named: "loading") //TODO: change
+                    self.textPreview.text = "Reacted to their image"
+                case .OtherUnreadPicture:
+                    self.imgPreview.image = UIImage(named: "loading") //TODO: change
+                    self.textPreview.text = "They haven't opened img"
+                }
+            }
+            else {
+                imgPreview.image = nil
+                textPreview.text = nil
+            }
             
             if let timestamp = dialog?.messages.last?.timestamp {
                 let date = NSDate(timeIntervalSinceReferenceDate: timestamp)

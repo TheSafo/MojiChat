@@ -12,7 +12,7 @@ import Firebase
 
 
 
-class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class DialogViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, BigImageDelegate {
 
     //Table
     private let dialogID: String
@@ -25,13 +25,61 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     private let libraryBtn = UIButton(type: .System)
     
-    init(dialog: Dialog) {
+    init(dialog: Dialog, shouldShowBigReaction: Bool, shouldShowImageAndTakeReaction: Bool) {
         self.dialogID = dialog.user1 + dialog.user2
         
         super.init(nibName: nil, bundle: nil)
         
         self.messagesArray = dialog.messages
         self.currentIndex = dialog.messages.count
+        
+        for i in 0..<messagesArray.count {
+            
+            let msg = messagesArray[i]
+            if msg.sender == FIRAuth.auth()!.currentUser!.uid {
+                continue
+            }
+            let ref = FIRDatabase.database().reference().child("dialogs/\(dialogID)/\(i)/wasRead")
+            ref.setValue(true)
+        }
+        
+        if shouldShowBigReaction {
+            let vc = BigReactionVC(emojiName: messagesArray.last!.text)
+            vcToShow = vc
+        }
+        if shouldShowImageAndTakeReaction {
+            let vc = BigImageVC(imageURL: messagesArray.last!.url)
+            vc.delegate = self
+            vcToShow = vc
+        }
+        
+        let dialogRef = FIRDatabase.database().reference().child("dialogs/\(dialogID)")
+        dialogRef.observeEventType(.Value, withBlock: { (snapshot) in
+            
+            if let msgArray = snapshot.value as? [AnyObject] {
+                
+                let loadingMsgsGroup = dispatch_group_create()
+                dispatch_group_enter(loadingMsgsGroup)
+                self.messagesArray = []
+                
+                dispatch_group_notify(loadingMsgsGroup, dispatch_get_main_queue()) {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                    })
+                }
+                
+                
+                for obj in msgArray {
+                    if let dict = obj as? [String:AnyObject] {
+                        let msg = Message(info: dict)
+                        self.messagesArray.append(msg)
+                    }
+                }
+                self.currentIndex = msgArray.count
+                
+                dispatch_group_leave(loadingMsgsGroup)
+            }
+        })
     }
     
     init(dialogID: String, showCamera: Bool, showLibrary: Bool) {
@@ -148,6 +196,20 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         })
     }
     
+    //MARK: - Delegate
+    func didReactWithEmotion(emote: EmojiType) {
+        
+        guard let curInd = currentIndex else {
+            print("got reaction but hard to deal with this case")
+            return
+        }
+        
+        let dialogRef = FIRDatabase.database().reference().child("dialogs/\(self.dialogID)")
+        let msgInfo = ["type":"Emoji", "text":emote.rawValue, "sender":FIRAuth.auth()!.currentUser!.uid, "timestamp":NSDate().timeIntervalSinceReferenceDate, "wasRead":false]
+        dialogRef.updateChildValues(["\(curInd)":msgInfo])
+        self.currentIndex! += 1
+    }
+    
     
     //MARK: - Table View Data Source methods
     
@@ -185,7 +247,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             imgRef.downloadURLWithCompletion({ (url, err) in
                 
                 let dialogRef = FIRDatabase.database().reference().child("dialogs/\(self.dialogID)")
-                let msgInfo = ["type":"Photo", "url":url!.absoluteString, "sender":FIRAuth.auth()!.currentUser!.uid, "timestamp":NSDate().timeIntervalSinceReferenceDate]
+                let msgInfo = ["type":"Photo", "url":url!.absoluteString, "sender":FIRAuth.auth()!.currentUser!.uid, "timestamp":NSDate().timeIntervalSinceReferenceDate, "wasRead":false]
                 dialogRef.updateChildValues(["\(curInd)":msgInfo])
                 self.currentIndex! += 1
             })

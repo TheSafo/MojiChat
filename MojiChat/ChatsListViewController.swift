@@ -221,8 +221,15 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
         
         if indexPath.section == 0 {
             expandedFriendRow = nil
+            
+            let dialog = self.recentsArr[indexPath.row]
+            let state = dialog.getRecentDialogState()
+            
+            let bigReact = (state == .UnreadEmoji) ? true : false
+            let takeReact = (state == .UnreadPicture) ? true : false
+        
 
-            let vc = DialogViewController(dialog: self.recentsArr[indexPath.row])
+            let vc = DialogViewController(dialog: self.recentsArr[indexPath.row], shouldShowBigReaction: bigReact, shouldShowImageAndTakeReaction: takeReact)
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else {

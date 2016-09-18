@@ -17,6 +17,16 @@ enum MessageType {
     case Emoji
 }
 
+enum RecentDialogState {
+    case UnreadPicture
+    
+    case UnreadEmoji
+    case ReadEmoji
+    
+    case OtherUnreadPicture
+    case YouReacted
+}
+
 struct Dialog {
     var user1: String
     var user2: String
@@ -40,6 +50,42 @@ struct Dialog {
         }
         return user1
     }
+    
+    func getRecentDialogState() -> RecentDialogState {
+        if let lastMsg = self.messages.last {
+
+            let curUsrID = FIRAuth.auth()?.currentUser?.uid ?? ""
+
+            if curUsrID == lastMsg.sender {
+                if lastMsg.type == .Emoji {
+                    return .YouReacted
+                }
+                else {
+                    return .OtherUnreadPicture
+                }
+            }
+            else {
+                if lastMsg.type == .Emoji {
+                    if lastMsg.wasRead {
+                        return .ReadEmoji
+                    }
+                    else {
+                        return .UnreadEmoji
+                    }
+                }
+                else {
+                    if lastMsg.wasRead {
+                        return .YouReacted
+                    }
+                    else {
+                        return .UnreadPicture
+                    }
+                }
+            }
+        }
+        
+        return .YouReacted
+    }
 }
 
 struct Message {
@@ -48,6 +94,7 @@ struct Message {
     var sender: String
     var url: NSURL?
     var timestamp: Double
+    var wasRead: Bool
     
     init(info: [String:AnyObject]) {
         
@@ -64,6 +111,8 @@ struct Message {
         text = (info["text"] as? String) ?? ""
         
         timestamp = info["timestamp"] as? Double ?? 0.0
+        
+        wasRead = info["wasRead"] as? Bool ?? false
     }
     
     static func calculateMessageID(userId1: String, userId2: String) -> String {
