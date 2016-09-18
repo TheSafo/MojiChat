@@ -22,9 +22,9 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
     var delegate: BigImageDelegate? = nil
     
     let imageVw = UIImageView()
-    
     init(imageURL: NSURL!) {
         super.init(nibName: nil, bundle: nil)
+        
         
         let data = NSData(contentsOfURL: imageURL)
         self.imageVw.image = UIImage(data: data!)
@@ -40,8 +40,15 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        view = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.clearColor()
+        imageVw.backgroundColor = UIColor.clearColor()
         
         view.addSubview(imageVw)
         
@@ -188,7 +195,18 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
                     
                     print("emotion: \(emotion) for url: \(url!.absoluteString)")
                     
-                    let emoji = EmojiType(rawValue: emotion) ?? .Neutral
+                    var emoji = EmojiType(rawValue: emotion) ?? .Neutral
+                    
+                    if emoji == .Unknown {
+                        
+                        let randArray: [EmojiType] = [.Neutral, .Anger, .Unknown, .Fear, .Happiness, .Happiness2, .Disgust, .Surprise, .Sadness]
+                        
+                        let i = Int(arc4random_uniform(9))
+                        
+                        emoji = randArray[i]
+                    }
+                    
+                    print("emoji is : \(emoji)")
                     
                     self.delegate?.didReactWithEmotion(emoji)
                 })

@@ -18,6 +18,7 @@ enum EmojiType: String {
     case Sadness = "sadness"
     case Surprise = "surprise"
     case Happiness = "happiness"
+    case Happiness2 = "happiness-2"
 }
 
 class BigReactionVC : UIViewController {

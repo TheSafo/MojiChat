@@ -48,6 +48,8 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         if shouldShowBigReaction {
             let vc = BigReactionVC(emojiName: messagesArray.last!.text)
             vcToShow = vc
+            
+            self.navigationController?.modalPresentationStyle = .OverCurrentContext
         }
         if shouldShowImageAndTakeReaction {
             let vc = BigImageVC(imageURL: messagesArray.last!.url)
@@ -166,6 +168,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
 //        tableView.rowHeight = 150
         
         view.addSubview(tableView)
+        view.addSubview(cameraBtn)
         view.addSubview(libraryBtn)
         
         tableView.snp_makeConstraints { (make) in
@@ -175,6 +178,11 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         libraryBtn.snp_makeConstraints { (make) in
             make.bottom.right.equalTo(view).inset(20)
             make.left.equalTo(view.snp_centerX).offset(10)
+            make.height.equalTo(40)
+        }
+        cameraBtn.snp_makeConstraints { (make) in
+            make.bottom.left.equalTo(view).inset(20)
+            make.right.equalTo(view.snp_centerX).offset(10)
             make.height.equalTo(40)
         }
     }
