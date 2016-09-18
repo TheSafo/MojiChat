@@ -14,6 +14,7 @@
 		43E6A35D1D8DA06C00FBC1C0 /* ChatsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E6A35C1D8DA06C00FBC1C0 /* ChatsListViewController.swift */; };
 		43E6A3621D8DA06C00FBC1C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */; };
 		43E6A3651D8DA06C00FBC1C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */; };
+		43EF53951D8DFCF800D475D2 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EF53941D8DFCF800D475D2 /* FriendTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		43E6A3641D8DA06C00FBC1C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43E6A3661D8DA06C00FBC1C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43EF53941D8DFCF800D475D2 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		57EC7CBBE60CC89F3D104F6F /* Pods-MojiChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MojiChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-MojiChat/Pods-MojiChat.release.xcconfig"; sourceTree = "<group>"; };
 		FFCFC8F247BFE2B308F727E5 /* Pods-MojiChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MojiChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MojiChat/Pods-MojiChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +76,7 @@
 				43E6A35A1D8DA06C00FBC1C0 /* AppDelegate.swift */,
 				431AABD71D8DB0CE00936E0C /* OnboardingViewController.swift */,
 				43E6A35C1D8DA06C00FBC1C0 /* ChatsListViewController.swift */,
+				43EF53941D8DFCF800D475D2 /* FriendTableViewCell.swift */,
 				43E6A3611D8DA06C00FBC1C0 /* Assets.xcassets */,
 				43E6A3631D8DA06C00FBC1C0 /* LaunchScreen.storyboard */,
 				43E6A3661D8DA06C00FBC1C0 /* Info.plist */,
@@ -222,6 +225,7 @@
 				43E6A35D1D8DA06C00FBC1C0 /* ChatsListViewController.swift in Sources */,
 				431AABD81D8DB0CE00936E0C /* OnboardingViewController.swift in Sources */,
 				43E6A35B1D8DA06C00FBC1C0 /* AppDelegate.swift in Sources */,
+				43EF53951D8DFCF800D475D2 /* FriendTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
