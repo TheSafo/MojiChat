@@ -10,10 +10,36 @@ import Foundation
 import UIKit
 import SDWebImage
 import FirebaseDatabase
+import FirebaseAuth
 
 enum MessageType {
     case Photo
     case Emoji
+}
+
+struct Dialog {
+    var user1: String
+    var user2: String
+    var messages: [Message] = []
+    
+    init(user1: String, user2: String, messageArr: [[String:AnyObject]]) {
+        self.user1 = user1
+        self.user2 = user2
+        
+        for msg in messageArr {
+            messages.append(Message(info: msg))
+        }
+    }
+    
+    func getNoncurrentUser() -> String {
+        
+        let curUsrID = FIRAuth.auth()?.currentUser?.uid ?? ""
+        
+        if curUsrID == user1 {
+            return user2
+        }
+        return user1
+    }
 }
 
 struct Message {
@@ -21,6 +47,7 @@ struct Message {
     var text: String
     var sender: String
     var url: NSURL?
+    var timestamp: Double
     
     init(info: [String:AnyObject]) {
         
@@ -35,6 +62,8 @@ struct Message {
         sender = (info["sender"] as? String) ?? "dno5M31uO1h6Rf1ht8GAO3wWAaR2"
         
         text = (info["text"] as? String) ?? ""
+        
+        timestamp = info["timestamp"] as? Double ?? 0.0
     }
     
     static func calculateMessageID(userId1: String, userId2: String) -> String {

@@ -19,7 +19,7 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
     private let tableView = UITableView(frame: CGRectZero, style: .Grouped)
     
     //Data
-    private var recentsArr: [String] = []
+    private var recentsArr: [Dialog] = []
     private var friendsArr: [User] = []
     
     private var expandedFriendRow: Int? = nil
@@ -72,17 +72,63 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
             dispatch_group_leave(loadingFriendsGroup)
         })
         
+        let messageListRef = FIRDatabase.database().reference().child("dialogs")
+        messageListRef.observeEventType(.Value, withBlock: { (snapshot) in
+            
+            guard let dialogDicts = snapshot.value as? [String:AnyObject] else {
+                return
+            }
+            
+            let loadingMessagesGroup = dispatch_group_create()
+            dispatch_group_enter(loadingMessagesGroup)
+            self.friendsArr = []
+            
+            dispatch_group_notify(loadingMessagesGroup, dispatch_get_main_queue()) {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                })
+            }
+            
+            let curUsrID = curUsr.uid
+            
+            var recents: [Dialog] = []
+            
+            for (key, value) in dialogDicts {
+                let firstUser = (key as NSString).substringToIndex(28)
+                let secondUser = (key as NSString).substringFromIndex(28)
+                
+                if firstUser == curUsrID || secondUser == curUsrID {
+                    if let arr = value as? [[String:AnyObject]] {
+                        let dialog = Dialog(user1: firstUser, user2: secondUser, messageArr: arr)
+                        recents.append(dialog)
+                    }
+                }
+            }
+            
+            recents.sortInPlace({ (di1, di2) -> Bool in
+                let lastMsgTS1 = di1.messages.last?.timestamp ?? 0.0
+                let lastMsgTS2 = di2.messages.last?.timestamp ?? 0.0
+                
+                return lastMsgTS1 < lastMsgTS2
+            })
+            
+            self.recentsArr = recents
+            
+            dispatch_group_leave(loadingMessagesGroup)
+        })
+        
         //Config
         view.backgroundColor = UIColor.whiteColor()
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(FriendTableViewCell.self, forCellReuseIdentifier: "friend")
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "test")
+        tableView.registerClass(RecentTableViewCell.self, forCellReuseIdentifier: "recent")
         tableView.rowHeight = 70
 //        tableView.contentOffset = CGPointMake(0, 20) //status bar
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.backgroundColor = UIColor.whiteColor()
+        tableView.separatorStyle = .None
 
         //Add subviews
         view.addSubview(tableView)
@@ -107,14 +153,14 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 70
+            return 90
         }
         else {
             if expandedFriendRow == indexPath.row {
-                return 140
+                return 160
             }
             else {
-                return 70
+                return 90
             }
         }
     }
@@ -151,8 +197,9 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("test", forIndexPath: indexPath)
-            cell.backgroundColor = UIColor.greenColor()
+            let cell = tableView.dequeueReusableCellWithIdentifier("recent", forIndexPath: indexPath) as! RecentTableViewCell
+//            cell.backgroundColor = UIColor.greenColor()
+            cell.dialog = self.recentsArr[indexPath.row]
             return cell
         }
         else {

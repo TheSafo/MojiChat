@@ -48,6 +48,8 @@ class FriendTableViewCell : UITableViewCell {
             else {
                 self.profVw.image = nil
             }
+            
+            self.profVw.layer.cornerRadius = self.profVw.bounds.width/2.0
         }
     }
     
@@ -122,6 +124,10 @@ class FriendTableViewCell : UITableViewCell {
         contentView.addSubview(nameLbl)
         contentView.addSubview(profVw)
 
+        contentView.snp_remakeConstraints { (make) in
+            make.left.right.equalTo(self)
+            make.top.bottom.equalTo(self).inset(10)
+        }
         
         profVw.snp_makeConstraints { (make) in
             make.top.bottom.left.equalTo(contentView).inset(10)

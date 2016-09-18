@@ -177,7 +177,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
             imgRef.downloadURLWithCompletion({ (url, err) in
                 
                 let dialogRef = FIRDatabase.database().reference().child("dialogs/\(self.dialogID)")
-                let msgInfo = ["type":"Photo", "url":url!.absoluteString, "sender":FIRAuth.auth()!.currentUser!.uid]
+                let msgInfo = ["type":"Photo", "url":url!.absoluteString, "sender":FIRAuth.auth()!.currentUser!.uid, "timestamp":NSDate().timeIntervalSinceReferenceDate]
                 dialogRef.updateChildValues(["\(curInd)":msgInfo])
                 self.currentIndex! += 1
             })
