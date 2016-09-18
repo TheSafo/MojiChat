@@ -169,7 +169,7 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
         if section == 0 {
             return 100
         }
-        return CGFloat.min
+        return 30
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -179,7 +179,9 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
             vw.backgroundColor = UIColor.redColor()
             return vw
         }
-        return nil
+        let vw = UIView()
+        vw.backgroundColor = UIColor.purpleColor()
+        return vw
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -198,7 +200,6 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("recent", forIndexPath: indexPath) as! RecentTableViewCell
-//            cell.backgroundColor = UIColor.greenColor()
             cell.dialog = self.recentsArr[indexPath.row]
             return cell
         }
@@ -221,6 +222,8 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
         if indexPath.section == 0 {
             expandedFriendRow = nil
 
+            let vc = DialogViewController(dialog: self.recentsArr[indexPath.row])
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else {
             let usrPressed = self.friendsArr[indexPath.row]

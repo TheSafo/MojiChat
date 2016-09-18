@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SDWebImage
+import FirebaseDatabase
 
 //protocol RecentTableViewCellDelegate {
 //    func cellPressedWithDialog(dialog: Dialog)
@@ -20,9 +21,17 @@ class RecentTableViewCell : UITableViewCell {
     
     var dialog: Dialog? = nil {
         didSet {
-            senderLbl.text = dialog?.getNoncurrentUser()
             
-            textPreview.text = dialog == nil ? nil : "New image" //TODO: handle this + img
+            if let usrId = dialog?.getNoncurrentUser() {
+                
+                let nameRef = FIRDatabase.database().reference().child("userData/\(usrId)/name")
+                nameRef.observeSingleEventOfType(.Value, withBlock: { (snap) in
+                    self.senderLbl.text = snap.value as? String
+                })
+            }
+            
+            textPreview.text = dialog == nil ? nil : "Data type" //TODO: handle this + img
+            imgPreview.image = UIImage(named: "loading")
             
             if let timestamp = dialog?.messages.last?.timestamp {
                 let date = NSDate(timeIntervalSinceReferenceDate: timestamp)
@@ -35,6 +44,8 @@ class RecentTableViewCell : UITableViewCell {
             else {
                 timestampLbl.text = nil
             }
+            
+            self.imgPreview.layer.cornerRadius = self.imgPreview.bounds.width/2.0
         }
     }
     
@@ -47,7 +58,10 @@ class RecentTableViewCell : UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        senderLbl.font = UIFont.boldSystemFontOfSize(18)
+        
         arrowLbl.text = ">"
+        arrowLbl.textColor = UIColor.lightGrayColor()
         
         contentView.addSubview(imgPreview)
         contentView.addSubview(senderLbl)
@@ -77,7 +91,8 @@ class RecentTableViewCell : UITableViewCell {
             make.width.lessThanOrEqualTo(contentView).offset(-20)
         }
         timestampLbl.snp_makeConstraints { (make) in
-            make.bottom.right.equalTo(contentView)
+            make.bottom.equalTo(contentView).inset(3)
+            make.right.equalTo(arrowLbl.snp_left).offset(4)
             make.height.equalTo(14)
 //            make.width.equalTo(24)
         }
@@ -86,6 +101,9 @@ class RecentTableViewCell : UITableViewCell {
             make.right.equalTo(contentView)
             make.width.height.equalTo(14)
         }
+        
+        self.imgPreview.layer.cornerRadius = self.imgPreview.bounds.width/2.0
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -96,5 +114,6 @@ class RecentTableViewCell : UITableViewCell {
         super.prepareForReuse()
         
         dialog = nil
+        self.imgPreview.layer.cornerRadius = self.imgPreview.bounds.width/2.0
     }
 }

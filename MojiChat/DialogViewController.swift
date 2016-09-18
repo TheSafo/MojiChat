@@ -25,6 +25,15 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     
     private let libraryBtn = UIButton(type: .System)
     
+    init(dialog: Dialog) {
+        self.dialogID = dialog.user1 + dialog.user2
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        self.messagesArray = dialog.messages
+        self.currentIndex = dialog.messages.count
+    }
+    
     init(dialogID: String, showCamera: Bool, showLibrary: Bool) {
         self.dialogID = dialogID
 
@@ -80,7 +89,6 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 dispatch_group_leave(loadingMsgsGroup)
             }
         })
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
