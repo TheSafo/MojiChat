@@ -13,14 +13,16 @@ import Firebase
 import FirebaseAuth
 import FirebaseMessaging
 
-class ChatsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ChatsListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FriendTableViewCellDelegate {
     
     //Views
-    private let tableView = UITableView()
+    private let tableView = UITableView(frame: CGRectZero, style: .Grouped)
     
     //Data
     private var recentsArr: [String] = []
     private var friendsArr: [User] = []
+    
+    private var expandedFriendRow: Int? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +60,7 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
                     
                     if let userInfo = idSnap.value as? [String:AnyObject] {
                         
-                        let usr = User(userInfo: userInfo)
+                        let usr = User(userInfo: userInfo, uid: id)
                         self.friendsArr.append(usr)
                     }
                     dispatch_group_leave(loadingFriendsGroup)
@@ -90,6 +92,20 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
         return 2
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 70
+        }
+        else {
+            if expandedFriendRow == indexPath.row {
+                return 140
+            }
+            else {
+                return 70
+            }
+        }
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return recentsArr.count
@@ -108,6 +124,11 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
         else {
             let cell = tableView.dequeueReusableCellWithIdentifier("friend", forIndexPath: indexPath) as! FriendTableViewCell
             cell.usr = self.friendsArr[indexPath.row]
+            cell.delegate = self
+            if expandedFriendRow == indexPath.row {
+                cell.isExpanded = true
+            }
+            
             return cell
         }
     }
@@ -117,14 +138,43 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         if indexPath.section == 0 {
-            
+            expandedFriendRow = nil
+
         }
         else {
             let usrPressed = self.friendsArr[indexPath.row]
-            
             print("User pressed: \(usrPressed.name)")
             
+            if expandedFriendRow == indexPath.row {
+                expandedFriendRow = nil
+            }
+            else {
+                expandedFriendRow = indexPath.row
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            }
         }
+    }
+    
+    //MARK: Cell handling
+    func libraryPressedFromUser(user: User) {
+        
+        let curUsrId = FIRAuth.auth()!.currentUser!.uid
+        let usrPressedID = user.uid
+
+        let messageId = Message.calculateMessageID(curUsrId, userId2: usrPressedID)
+        let msgVc = DialogViewController(dialogID: messageId, showCamera: false, showLibrary: true)
+
+        self.navigationController?.presentViewController(msgVc, animated: true, completion: nil)
+    }
+    func cameraPressedFromUser(user: User) {
+        
+        let curUsrId = FIRAuth.auth()!.currentUser!.uid
+        let usrPressedID = user.uid
+        
+        let messageId = Message.calculateMessageID(curUsrId, userId2: usrPressedID)
+        let msgVc = DialogViewController(dialogID: messageId, showCamera: true, showLibrary: false)
+        
+        self.navigationController?.presentViewController(msgVc, animated: true, completion: nil)
     }
 }
 

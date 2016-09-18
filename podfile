@@ -9,6 +9,7 @@ target 'MojiChat' do
 	pod 'FacebookLogin'
 	pod 'Firebase/Database'
 	pod 'Firebase/Auth'
+	pod 'Firebase/Storage'	
 	pod 'Firebase/Messaging'
 	pod 'SDWebImage', '~>3.8'
 end
