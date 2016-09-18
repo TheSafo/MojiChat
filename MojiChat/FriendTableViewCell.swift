@@ -114,12 +114,12 @@ class FriendTableViewCell : UITableViewCell {
         nameLbl.font = UIFont.boldSystemFontOfSize(18)
         
         cameraBtn.backgroundColor = UIColor(white: 0.8, alpha: 1.0)
-        cameraBtn.setTitle("Cam", forState: .Normal)
+        cameraBtn.setTitle("Camera", forState: .Normal)
         cameraBtn.layer.cornerRadius = 9
         cameraBtn.addTarget(self, action: #selector(self.cameraBtnPressed), forControlEvents: .TouchUpInside)
         
         libraryBtn.backgroundColor = UIColor(white: 0.8, alpha: 1.0)
-        libraryBtn.setTitle("LIb", forState: .Normal)
+        libraryBtn.setTitle("Library", forState: .Normal)
         libraryBtn.layer.cornerRadius = 9
         libraryBtn.addTarget(self, action: #selector(self.libraryBtnPressed), forControlEvents: .TouchUpInside)
 

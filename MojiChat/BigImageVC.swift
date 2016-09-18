@@ -26,7 +26,14 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
     init(imageURL: NSURL!) {
         super.init(nibName: nil, bundle: nil)
         
-        imageVw.sd_setImageWithURL(imageURL, placeholderImage: UIImage(named: "loading"))
+        let data = NSData(contentsOfURL: imageURL)
+        self.imageVw.image = UIImage(data: data!)
+//        NSURL *url = [NSURL URLWithString:path];
+//        NSData *data = [NSData dataWithContentsOfURL:url];
+//        UIImage *img = [[UIImage alloc] initWithData:data];
+//        CGSize size = img.size;
+        
+//        imageVw.sd_setImageWithURL(imageURL, placeholderImage: UIImage(named: "loading"))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -121,7 +128,7 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
     
 //    dispatch_async(sessionQueue) { () -> Void in
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3.0 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), { 
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1.5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
         
     
     
@@ -167,10 +174,10 @@ class BigImageVC : UIViewController, AVCaptureVideoDataOutputSampleBufferDelegat
         let fileName = "\(name).png"
         let imgRef = storage.referenceForURL("gs://mojichat-afe91.appspot.com").child("images").child(fileName)
         
-        let metaData = FIRStorageMetadata()
-        metaData.contentType = "image/png"
+//        let metaData = FIRStorageMetadata()
+//        metaData.contentType = "image/png"
         
-        let uploadTask = imgRef.putData(imgData, metadata: metaData)
+        let uploadTask = imgRef.putData(imgData)//, metadata: metaData)
         
         // Add a progress observer to an upload task
         let _ = uploadTask.observeStatus(.Success) { snapshot in

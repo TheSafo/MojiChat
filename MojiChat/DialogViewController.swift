@@ -65,6 +65,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 dispatch_group_notify(loadingMsgsGroup, dispatch_get_main_queue()) {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
+                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messagesArray.count - 1), atScrollPosition: .Bottom, animated: true)
                     })
                 }
                 
@@ -90,9 +91,9 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         if showCamera {
             if UIImagePickerController.isSourceTypeAvailable(.Camera) {
                 let ctrlr = UIImagePickerController()
-                ctrlr.showsCameraControls = true
                 ctrlr.sourceType = .Camera
                 ctrlr.cameraCaptureMode = .Photo
+                ctrlr.showsCameraControls = true
                 ctrlr.delegate = self
                 
                 currentIndex = 0
@@ -122,6 +123,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
                 dispatch_group_notify(loadingMsgsGroup, dispatch_get_main_queue()) {
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
+                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: self.messagesArray.count - 1), atScrollPosition: .Bottom, animated: true)
                     })
                 }
 
@@ -146,14 +148,15 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        libraryBtn.backgroundColor = UIColor.redColor()
-        libraryBtn.setTitle("Lib", forState: .Normal)
+        libraryBtn.backgroundColor = UIColor(white: 0.8, alpha: 1.0)
+        libraryBtn.setTitle("Library", forState: .Normal)
+        libraryBtn.layer.cornerRadius = 9
         libraryBtn.addTarget(self, action: #selector(libraryBtnPressed), forControlEvents: .TouchUpInside)
         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerClass(DialogTableViewCell.self, forCellReuseIdentifier: "test")
-        tableView.rowHeight = 150
+//        tableView.rowHeight = 150
         
         view.addSubview(tableView)
         view.addSubview(libraryBtn)
@@ -164,7 +167,7 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         
         libraryBtn.snp_makeConstraints { (make) in
             make.bottom.right.equalTo(view).inset(20)
-            make.left.equalTo(view.snp_centerY).offset(10)
+            make.left.equalTo(view.snp_centerX).offset(10)
             make.height.equalTo(40)
         }
     }
@@ -222,6 +225,17 @@ class DialogViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCellWithIdentifier("test", forIndexPath: indexPath) as! DialogTableViewCell
         cell.message = self.messagesArray[indexPath.row]
         return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let msg = self.messagesArray[indexPath.row]
+        
+        if msg.type == .Emoji {
+            return 150
+        }
+        else {
+            return 250
+        }
     }
     
     //MARK: - IMage reception

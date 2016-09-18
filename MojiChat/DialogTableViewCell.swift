@@ -132,6 +132,29 @@ class DialogTableViewCell : UITableViewCell {
         didSet {
             if let url = message?.url {
                 imgVw.sd_setImageWithURL(url)
+                
+                imgVw.contentMode = .ScaleAspectFill
+                
+                imgVw.snp_remakeConstraints { (make) in
+                    make.bottom.equalTo(contentView).inset(10)
+                    make.left.equalTo(senderVw.snp_right).offset(10)
+                    make.top.equalTo(contentView).inset(25)
+                    make.right.equalTo(contentView).inset(50)
+                }
+            }
+            else if message?.type == .Emoji {
+                let imgName = "mc-conversation-\(message!.text)"
+                imgVw.image = UIImage(named: imgName)
+                
+                imgVw.contentMode = .ScaleAspectFit
+                
+                imgVw.snp_remakeConstraints { (make) in
+                    make.bottom.equalTo(contentView).inset(10)
+                    make.left.equalTo(senderVw.snp_right).offset(10)
+                    make.top.equalTo(contentView).inset(25)
+                    make.width.equalTo(imgVw.snp_height)
+//                    make.right.equalTo(contentView).inset(100)
+                }
             }
             else {
                imgVw.image = nil
