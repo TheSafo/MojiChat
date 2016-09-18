@@ -240,11 +240,11 @@ class ChatsListViewController: UIViewController, UITableViewDataSource, UITableV
                 self.navigationController?.pushViewController(msgVc, animated: true)
                 
                 expandedFriendRow = nil
-                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
             else {
                 expandedFriendRow = indexPath.row
-                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
         }
     }

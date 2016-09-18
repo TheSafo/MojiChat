@@ -74,7 +74,7 @@ class FriendTableViewCell : UITableViewCell {
                 cameraBtn.snp_remakeConstraints { (make) in
                     make.left.bottom.equalTo(contentView).inset(10)
                     make.top.equalTo(contentView.snp_centerY).offset(5)
-                    make.right.equalTo(contentView.snp_centerX).inset(5)
+                    make.right.equalTo(contentView.snp_centerX).inset(-5)
                 }
                 libraryBtn.snp_remakeConstraints { (make) in
                     make.right.bottom.equalTo(contentView).inset(10)
@@ -113,12 +113,14 @@ class FriendTableViewCell : UITableViewCell {
         
         nameLbl.font = UIFont.boldSystemFontOfSize(18)
         
-        cameraBtn.backgroundColor = UIColor.yellowColor()
+        cameraBtn.backgroundColor = UIColor(white: 0.8, alpha: 1.0)
         cameraBtn.setTitle("Cam", forState: .Normal)
+        cameraBtn.layer.cornerRadius = 9
         cameraBtn.addTarget(self, action: #selector(self.cameraBtnPressed), forControlEvents: .TouchUpInside)
         
-        libraryBtn.backgroundColor = UIColor.orangeColor()
+        libraryBtn.backgroundColor = UIColor(white: 0.8, alpha: 1.0)
         libraryBtn.setTitle("LIb", forState: .Normal)
+        libraryBtn.layer.cornerRadius = 9
         libraryBtn.addTarget(self, action: #selector(self.libraryBtnPressed), forControlEvents: .TouchUpInside)
 
         contentView.addSubview(nameLbl)
